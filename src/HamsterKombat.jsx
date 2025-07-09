@@ -19,21 +19,10 @@ const HamsterKombat = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showExchange, setShowExchange] = useState(false);
   const [coins, setCoins] = useState(0);
-  const [level, setLevel] = useState(1);
-  const [perTap, setPerTap] = useState(1);
-  const [showLevelUp, setShowLevelUp] = useState(false);
-  const [levelUpText, setLevelUpText] = useState("");
+
+  // Faqat bitta coin qo'shish
   const handleHamsterClick = () => {
-    const newCoins = coins + perTap;
-    if (Math.floor(newCoins / 100) + 1 > level) {
-      const newLevel = level + 1;
-      setLevel(newLevel);
-      setPerTap(perTap * 2);
-      setLevelUpText(`lvl ${newLevel} ga otdingiz!`);
-      setShowLevelUp(true);
-      setTimeout(() => setShowLevelUp(false), 2000);
-    }
-    setCoins(newCoins);
+    setCoins(coins + 1);
   };
 
   return (
@@ -48,16 +37,20 @@ const HamsterKombat = () => {
           >
             <span className="stat-label gold">Earn per tap</span>
             <span className="stat-value">
-              <FontAwesomeIcon icon={faCoins} className="stat-ico" />+{perTap}
+              <FontAwesomeIcon icon={faCoins} className="stat-ico" />
+              +1
             </span>
           </button>
           <button className="stat-btn">
             <span className="stat-label blue">Coins to level up</span>
-            <span className="stat-value">{100 - (coins % 100)}</span>
+            <span className="stat-value">10 M</span>
           </button>
           <button className="stat-btn">
-            <span className="stat-label green">Level</span>
-            <span className="stat-value">lvl {level}</span>
+            <span className="stat-label green">Profit per hour</span>
+            <span className="stat-value">
+              <FontAwesomeIcon icon={faCoins} className="stat-ico" />
+              +636
+            </span>
           </button>
         </div>
 
@@ -74,7 +67,6 @@ const HamsterKombat = () => {
             style={{ cursor: "pointer" }}
             onClick={handleHamsterClick}
           />
-          {showLevelUp && <div className="levelup-anim">{levelUpText}</div>}
         </div>
 
         <div className="progress-row">
@@ -227,3 +219,4 @@ const HamsterKombat = () => {
 };
 
 export default HamsterKombat;
+  
